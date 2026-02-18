@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import userRouter from './users/user-route.js';
 
 dotenv.config();
 const app = express();
@@ -11,6 +12,7 @@ app.get('/', (req, res) => {
     message: 'Users Managment API'
   });
 });
+app.use('/users', userRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
