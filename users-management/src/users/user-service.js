@@ -1,15 +1,11 @@
 import { prisma } from "../utils/prisma.js";
 
 export async function findUserByEmail(email) {
-    return prisma.user.findUnique({
-        where: { email }
-    });
+    return prisma.user.findUnique({ where: { email } });
 }
 
 export async function createUser(userData) {
-    return prisma.user.create({
-        data: userData
-    });
+    return prisma.user.create({ data: userData });
 }
 
 export async function listUsers() {
@@ -17,20 +13,18 @@ export async function listUsers() {
 }
 
 export async function getUserById(id) {
-    return prisma.user.findUnique({
-            where: { id }
-    });
+    return prisma.user.findUnique({ where: { id } });
 }
 
 export async function deleteUser(id) {
-    return prisma.user.delete({
-            where: { id }
-    });
+    return prisma.user.delete({ where: { id } });
 }
 
 export async function updateUser(id, data) {
-    return prisma.user.update({
-            where: { id },
-            data
-    });
+    return prisma.user.update({ where: { id }, data });
+}
+
+// Compteur ()
+export async function countUsers() {
+    return prisma.user.count();
 }
