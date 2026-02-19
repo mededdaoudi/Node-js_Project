@@ -26,3 +26,29 @@ export function validateUser(userData) {
         data: userData
     };
 }
+
+export function validateUpdateUser(userData) {
+    const errors = {};
+    const data = {};
+
+    if(userData.email !== undefined) {
+        if (!isEmail(userData.email)) errors.email = 'Email is Invalid';
+        else data.email = userData.email;
+    }
+
+    if(userData.password !== undefined) {
+        if (!isStrongPassword(userData.password)) errors.password = 'Password must be strong';
+        else data.password = userData.password;
+    }
+
+    if(userData.name !== undefined) {
+        if (!isNonEmptyString(userData.name)) errors.name = 'Name is required';
+        else data.name = userData.name;
+    }
+
+    return {
+        ok: Object.keys(errors).length === 0,
+        errors,
+        data
+    };
+}
